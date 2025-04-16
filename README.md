@@ -1,12 +1,12 @@
 # 🛠️ Milling Machine Failure Type Detection App
 ## Table of Content
-- [Acknowledgment][#acknowledgment]
-- [Abstract][#abstract]
-- [Introduction][#introduction]
-- [Materials and Method][#materials-and-method]
-- [Results and DisCcussion][#results-and-discussion]
-- [Conclusion][#conclusion]
-- [References][#references]
+- [Acknowledgment](#acknowledgment)
+- [Abstract](#abstract)
+- [Introduction](#introduction)
+- [Materials and Method](#materials-and-method)
+- [Results and DisCcussion](#results-and-discussion)
+- [Conclusion](#conclusion)
+- [References](#references)
 
 ## Acknowledgment
 This work was completed as part of a hackathon organized by the Association of Professional Women Engineers of Nigeria (APWEN) Lagos SHENoVATION. Special thanks to Olayinka Adewumi and all academic mentors and technical advisors for their valuable contributors in the course of this hackathon.
