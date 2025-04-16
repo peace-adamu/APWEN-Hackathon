@@ -1,4 +1,15 @@
-# 🛠️ Milling Machine Failure Type Prediction App
+# 🛠️ Milling Machine Failure Type Detection App
+## Table of Content
+- [Acknowledgment].[#acknowledgment]
+- [Abstract].[#abstract]
+- [Introduction].[#introduction]
+- [Materials and Method].[#material-and-method]
+- [Results and DisCcussion].[#result-and-discussion]
+- [Conclusion].[#conclusion]
+- [References].[#refences]
+
+## Acknowledgment
+This work was completed as part of a hackathon organized by the Association of Professional Women Engineers of Nigeria (APWEN) Lagos SHENoVATION. Special thanks to Olayinka Adewumi and all academic mentors and technical advisors for their valuable contributors in the course of this hackathon.
 
 ## Abstract
 This project presents a predictive maintenance solution for milling machines by applying machine learning techniques and deploying the final model using a user-friendly Streamlit web application. The dataset used includes critical machine parameters such as air temperature, process temperature, rotational speed, torque, and tool wear. The goal was to predict the type of failure the machine may encounter during operation.
@@ -53,7 +64,7 @@ This matrix enables a deeper understanding of the types of errors made by the mo
 ### 3.4 Accuracy
 Accuracy measures the proportion of correctly predicted instances among the total predictions made. It is a simple and effective metric in balanced classification tasks.
 
-Accuracy = \frac{TP + TN}{TP + FP + TN + FN}
+Accuracy = $\frac{TP + TN}{TP + FP + TN + FN}$
 
 In this study, the tuned Random Forest model achieved an exceptional accuracy of 100%, demonstrating its effectiveness in learning the patterns related to machine failure from the input parameters.
 
@@ -99,6 +110,7 @@ Upon tuning, the model achieved 100% precision, recall, and F1-score across all 
 - Heat dissipation failure
 - Over strain failure
 - Combined failure types
+
 The results affirm the model's potential for industrial application, allowing operators to preemptively identify
 specific failure types with perfect confidence, thereby minimizing machine downtime, reducing maintenance
 costs, and enhancing operational efficiency.
@@ -110,3 +122,9 @@ Future Work:
 The outcomes of this research not only validate the efficacy of Random Forest for industrial failure prediction
 but also establish a scalable blueprint for data-driven maintenance strategies in smart manufacturing
 environments.
+
+## References
+- Bruno, G., & Lombardi, F. (2020). Machine Learning Application for Tool Wear Prediction in Milling. Politecnico di Torino, Corso di Laurea Magistrale in Automotive Engineering (Ingegneria Dell'Autoveicolo).
+
+- Rao, V. N. (2020). Machine Learning Application for Tool Wear Prediction in Milling (Master’s thesis, Politecnico di Torino). Rel. Giulia Bruno, Franco Lombardi.
+
