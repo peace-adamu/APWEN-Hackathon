@@ -97,11 +97,15 @@ Class Label | Precision | Recall | F1-Score | Support
 2 | 1.00 | 1.00 | 1.00 | 415
 3 | 1.00 | 1.00 | 1.00 | 393
 4 | 1.00 | 1.00 | 1.00 | 387
+![confusion_matrix](https://github.com/user-attachments/assets/3d7a8e4f-98c0-4689-bea0-83df144116e4)
+
+![tuned_confusion_matrix](https://github.com/user-attachments/assets/f9543cb0-ba8e-4f26-80cc-37ce66cbcc70)
 
 - Overall Accuracy: 1.00 (2000 samples)
 These results reflect an exceptional level of generalization by the model across all failure classes. Every
 class was perfectly identified, with no false positives or false negatives, indicating the model's robustness and
 reliability for real-world predictive maintenance deployment.
+
 
 ## 5.0 Conclusion
 This study presented a robust machine learning-based approach for predictive maintenance in milling
