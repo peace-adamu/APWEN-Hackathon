@@ -11,6 +11,7 @@
 - [Results and DisCcussion](#results-and-discussion)
 - [Conclusion](#conclusion)
 - [References](#references)
+- [Process Simulation Integration Using Aspen HYSYS](#process-simulation-integration-using-aspen-hysys)
 
 ## Acknowledgment
 This work was completed as part of a hackathon organized by the Association of Professional Women Engineers of Nigeria (APWEN) Lagos SHENoVATION. Special thanks to Olayinka Adewumi and all academic mentors and technical advisors for their valuable contributors in the course of this hackathon.
@@ -138,7 +139,7 @@ To explore the downstream implications of milling machine failures on broader en
 
 This multidisciplinary linkage provides a predictive maintenance chain that spans from mechanical tooling operations to chemical process safety, ensuring end-to-end operational reliability.
 
-## 6.1 System Setup in Aspen HYSYS
+### 6.1 System Setup in Aspen HYSYS
 ✅ 1. Process Overview
 Simulate a simplified thermal loop or fluid heating process that could be affected by faulty machined parts (like valves, seals, or connectors prepared via milling).
 
@@ -156,7 +157,7 @@ The following ML model outputs are used as trigger variables:
 - Heat Exchanger Fouling
 - Reactor/Column Throughput
 
-## 6.3 Example Simulation Scenario
+### 6.2 Example Simulation Scenario
 ✅ Process Modeled: Fluid Heating System
 Components:
 - Feed Stream (e.g., water or chemical fluid)
@@ -165,7 +166,7 @@ Components:
 - Control Valve (simulated tool wear affects valve control precision)
 - Outlet Stream (monitored for deviations)
 
-## 6.3 Simulation Logic
+### 6.3 Simulation Logic
 Using custom user variables, define dynamic behavior based on ML failure predictions:
 - ML Failure Type	HYSYS Trigger	Process Impact
 - Tool Wear Failure	Valve Wear (%) ↑	Flow instability, pressure drops
@@ -173,13 +174,13 @@ Using custom user variables, define dynamic behavior based on ML failure predict
 - Overstrain Failure	Shaft Torque ↑	Pump head instability
 - Combined Failures	Multiple variables	Safety alarm trigger, trip logic
 
-## 6.4 Workflow Summary
+### 6.4 Workflow Summary
 - Input: ML model predicts an incoming failure (e.g., torque anomaly).
 - Mapping: Aspen HYSYS reads this condition as a trigger to simulate process behavior.
 - Simulation: Control loop deviations, temperature spikes, or fluid instability are simulated.
 - Output: Operational reports and alarms are generated based on system performance deviation thresholds.
 
-## 6.6 Benefits of Integration
+### 6.5 Benefits of Integration
 - Demonstrates how mechanical faults propagate into chemical inefficiencies.
 - Allows engineers to simulate "What-if" failure scenarios in plant design.
 - Supports real-time maintenance decisions using predictive alerts from ML models.
