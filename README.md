@@ -97,7 +97,8 @@ Class Label | Precision | Recall | F1-Score | Support
 2 | 1.00 | 1.00 | 1.00 | 415
 3 | 1.00 | 1.00 | 1.00 | 393
 4 | 1.00 | 1.00 | 1.00 | 387
-Overall Accuracy: 1.00 (2000 samples)
+
+- Overall Accuracy: 1.00 (2000 samples)
 These results reflect an exceptional level of generalization by the model across all failure classes. Every
 class was perfectly identified, with no false positives or false negatives, indicating the model's robustness and
 reliability for real-world predictive maintenance deployment.
@@ -126,6 +127,14 @@ Future Work:
 The outcomes of this research not only validate the efficacy of Random Forest for industrial failure prediction
 but also establish a scalable blueprint for data-driven maintenance strategies in smart manufacturing
 environments.
+
+## 6.0 Process Simulation Integration Using Aspen HYSYS
+
+To explore the downstream implications of milling machine failures on broader engineering systems, Aspen HYSYS was integrated as a process simulation layer. The aim was to simulate how mechanical anomalies, particularly tool wear and heat-induced stress, could affect the performance and safety of critical components within a chemical processing environment. By importing sensor-driven parameters such as air temperature, torque, and rotational speed, a hybrid workflow was modeled where the failure of machined parts could propagate operational inefficiencies in a thermal process loop simulated in HYSYS.
+
+This multidisciplinary linkage provides a predictive maintenance chain that spans from mechanical tooling operations to chemical process safety, ensuring end-to-end operational reliability.
+
+
 
 ## References
 - Bruno, G., & Lombardi, F. (2020). Machine Learning Application for Tool Wear Prediction in Milling. Politecnico di Torino, Corso di Laurea Magistrale in Automotive Engineering (Ingegneria Dell'Autoveicolo).
