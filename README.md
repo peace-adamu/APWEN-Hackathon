@@ -134,9 +134,56 @@ environments.
 
 ## 6.0 Process Simulation Integration Using Aspen HYSYS
 
-To explore the downstream implications of milling machine failures on broader engineering systems, Aspen HYSYS was integrated as a process simulation layer. The aim was to simulate how mechanical anomalies, particularly tool wear and heat-induced stress, could affect the performance and safety of critical components within a chemical processing environment. By importing sensor-driven parameters such as air temperature, torque, and rotational speed, a hybrid workflow was modeled where the failure of machined parts could propagate operational inefficiencies in a thermal process loop simulated in HYSYS.
+To explore the downstream implications of milling machine failures on broader engineering systems, Aspen HYSYS was integrated as a process simulation layer.  The primary goal of integrating Aspen HYSYS is to simulate the downstream chemical processing impact of potential mechanical failures identified by the machine learning model. This aims to demonstrate how predictive maintenance decisions on the milling machine can influence thermal process efficiency, energy consumption, or safety margins in a broader industrial plant.
 
 This multidisciplinary linkage provides a predictive maintenance chain that spans from mechanical tooling operations to chemical process safety, ensuring end-to-end operational reliability.
+
+## 6.1 System Setup in Aspen HYSYS
+✅ 1. Process Overview
+Simulate a simplified thermal loop or fluid heating process that could be affected by faulty machined parts (like valves, seals, or connectors prepared via milling).
+
+ 2. Parameters from ML Model
+The following ML model outputs are used as trigger variables:
+- Rotational Speed
+- Torque
+- Air Temperature
+- Process Temperature
+- Tool Wear
+
+✅ These are mapped to process reliability parameters in HYSYS, simulating mechanical impact on:
+- Pump/Compressor Efficiency
+- Valve Leakage
+- Heat Exchanger Fouling
+- Reactor/Column Throughput
+
+## 6.3 Example Simulation Scenario
+✅ Process Modeled: Fluid Heating System
+Components:
+- Feed Stream (e.g., water or chemical fluid)
+- Pump (receives input torque from a shaft)
+- Heat Exchanger (receives input from process temperature & flow rate)
+- Control Valve (simulated tool wear affects valve control precision)
+- Outlet Stream (monitored for deviations)
+
+## 6.3 Simulation Logic
+Using custom user variables, define dynamic behavior based on ML failure predictions:
+- ML Failure Type	HYSYS Trigger	Process Impact
+- Tool Wear Failure	Valve Wear (%) ↑	Flow instability, pressure drops
+- Heat Dissipation Failure	Pump Temp ↑	Efficiency ↓, cavitation risk
+- Overstrain Failure	Shaft Torque ↑	Pump head instability
+- Combined Failures	Multiple variables	Safety alarm trigger, trip logic
+
+## 6.4 Workflow Summary
+- Input: ML model predicts an incoming failure (e.g., torque anomaly).
+- Mapping: Aspen HYSYS reads this condition as a trigger to simulate process behavior.
+- Simulation: Control loop deviations, temperature spikes, or fluid instability are simulated.
+- Output: Operational reports and alarms are generated based on system performance deviation thresholds.
+
+## 6.6 Benefits of Integration
+- Demonstrates how mechanical faults propagate into chemical inefficiencies.
+- Allows engineers to simulate "What-if" failure scenarios in plant design.
+- Supports real-time maintenance decisions using predictive alerts from ML models.
+- Bridges Industry 4.0 (data-driven ML) with Process Engineering (HYSYS).
 
 
 
