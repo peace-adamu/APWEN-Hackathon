@@ -18,11 +18,8 @@ This work was completed as part of a hackathon organized by the Association of P
 ## Abstract
 This project presents an end-to-end predictive maintenance system for milling machines, integrating machine learning with chemical process simulation to enhance industrial reliability and performance. Using a dataset comprising critical operational metrics—air temperature, process temperature, rotational speed, torque, and tool wear—a Random Forest Classifier was trained to accurately predict five distinct types of machine failure. Comprehensive data preprocessing was applied, including label encoding, feature scaling, and class imbalance correction using SMOTE. The optimized model, tuned with GridSearchCV, achieved perfect classification metrics on the test set:
 Accuracy: 1.00
-
 Precision: 1.00
-
 Recall: 1.00
-
 F1-score: 1.00
 
 The model was deployed through an intuitive Streamlit web application, enabling real-time input of machine parameters and delivering instant predictions of potential failure modes. This empowers engineers and plant operators to make informed, data-driven maintenance decisions—minimizing unplanned downtime and improving equipment longevity.
