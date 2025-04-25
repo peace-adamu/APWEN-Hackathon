@@ -113,52 +113,79 @@ To explore the downstream implications of milling machine failures on broader en
 
 This multidisciplinary linkage provides a predictive maintenance chain that spans from mechanical tooling operations to chemical process safety, ensuring end-to-end operational reliability.
 
-### 5.1 System Setup in Aspen HYSYS
+### 5.1 System Setup in Simulation Process (DWSIM)
 ✅ 1. Process Overview
-Simulate a simplified thermal loop or fluid heating process that could be affected by faulty machined parts (like valves, seals, or connectors prepared via milling).
+A simplified fluid heating system was simulated using DWSIM, demonstrating how mechanical failures (such as those due to faulty machined parts like valves, pumps, or seals) affect process efficiency. The system models normal and failure scenarios in a parallel loop setup.
 
- 2. Parameters from ML Model
-The following ML model outputs are used as trigger variables:
+✅ 2. Parameters from ML Model
+The following failure indicators predicted by the ML model were linked to process simulation conditions:
 - Rotational Speed
 - Torque
 - Air Temperature
 - Process Temperature
 - Tool Wear
 
-✅ These are mapped to process reliability parameters in HYSYS, simulating mechanical impact on:
-- Pump/Compressor Efficiency
-- Valve Leakage
-- Heat Exchanger Fouling
-- Reactor/Column Throughput
+These were mapped to relevant process variables in DWSIM:
 
+#### ML Model Output	DWSIM Parameter	Simulated Impact
+- Tool Wear	Valve opening percentage ↓	Flow rate instability, pressure fluctuation
+- Heat Dissipation Issue	Pump temperature ↑	Efficiency drop, cavitation risk
+- Torque Overload	Pump head ↑	Energy imbalance, pressure surges
+- Combined Failures	Multi-point deviations	System alarms, operational instability
+  
 ### 5.2 Example Simulation Scenario
-✅ Process Modeled: Fluid Heating System
-Components:
-- Feed Stream (e.g., water or chemical fluid)
-- Pump (receives input torque from a shaft)
-- Heat Exchanger (receives input from process temperature & flow rate)
-- Control Valve (simulated tool wear affects valve control precision)
-- Outlet Stream (monitored for deviations)
+✅ Modeled Process: Thermal Loop for Heated Fluid Transfer
+
+Main Components:
+- Two Pumps (Normal and Failure loops)
+- Two Valves (Control flow in each path)
+- Heat Exchanger (Processes output from the normal loop)
+- Input & Output Streams (for Normal and Failure paths)
 
 ### 5.3 Simulation Logic
-Using custom user variables, define dynamic behavior based on ML failure predictions:
-- ML Failure Type	HYSYS Trigger	Process Impact
-- Tool Wear Failure	Valve Wear (%) ↑	Flow instability, pressure drops
-- Heat Dissipation Failure	Pump Temp ↑	Efficiency ↓, cavitation risk
-- Overstrain Failure	Shaft Torque ↑	Pump head instability
-- Combined Failures	Multiple variables	Safety alarm trigger, trip logic
+Dynamic behavior based on ML-predicted failure types:
+
+| **ML Failure Type**        | **DWSIM Trigger**         | **System Impact**                              |
+|---------------------------|---------------------------|------------------------------------------------|
+| Tool Wear Failure         | Valve opening ↓           | Reduced flow, erratic pressure                 |
+| Heat Dissipation Failure  | Pump temperature ↑        | Reduced efficiency, pump instability           |
+| Torque Overload           | Pump pressure ↑           | High power draw, possible cavitation           |
+| Combined Failures         | Multiple triggers         | Tripped flow loop, fault alarms                |
 
 ### 5.4 Workflow Summary
-- Input: ML model predicts an incoming failure (e.g., torque anomaly).
-- Mapping: Aspen HYSYS reads this condition as a trigger to simulate process behavior.
-- Simulation: Control loop deviations, temperature spikes, or fluid instability are simulated.
-- Output: Operational reports and alarms are generated based on system performance deviation thresholds.
+1. ML Prediction: An ML model flags a potential mechanical failure.
+2. Simulation Setup: DWSIM variables are updated based on prediction (e.g., valve partially closed, pump runs hotter).
+3. System Behavior: Deviations in output stream pressure, temperature, or flow rate are observed.
+4. Output Reports: Efficiency loss, safety limits breached, or unstable flows are reported visually.
 
 ### 5.5 Benefits of Integration
-- Demonstrates how mechanical faults propagate into chemical inefficiencies.
-- Allows engineers to simulate "What-if" failure scenarios in plant design.
-- Supports real-time maintenance decisions using predictive alerts from ML models.
-- Bridges Industry 4.0 (data-driven ML) with Process Engineering (HYSYS).
+🎯 Engineering Insight: Shows how small mechanical faults lead to chemical inefficiencies.
+⚙️ Scenario Testing: Easy simulation of “What-if” mechanical failure events.
+🔔 Predictive Maintenance: DWSIM simulation driven by ML alerts supports better plant decisions.
+🌐 Industry 4.0 Ready: Bridges machine learning with process engineering.
+
+### 5.6 To Anticipate Failure Prediction First, Then Simulation 
+
+🔹 Step-by-Step:
+- ML app analyzes machine sensor data (like torque, speed, tool wear) and predicts a failure type.
+- Based on the predicted failure, you go into DWSIM and simulate the process response:
+
+E.g., if “Tool Wear” is predicted → You simulate reduced valve opening %.
+
+If “Overstrain” is predicted → You increase pump head or decrease efficiency.
+
+You observe the chemical process behavior during the simulated failure.
+
+✅ Why this is better:
+It mirrors real life — engineers use ML to anticipate failures, then simulate to test safety, plan maintenance, or redesign the system.
+
+###### Note: Keeps the simulation dynamic, based on real-time or historical predictions.
+
+#### 🔁 Option 2: Simulation First, Then ML Prediction
+Less common, but used for model training or validation.
+
+You simulate various failure conditions in DWSIM first, generate data, and then use that data to train or test your ML model. 
+
 
 ## 6.0 Conclusion
 This study presented a robust machine learning-based approach for predictive maintenance in milling
