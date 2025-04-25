@@ -9,7 +9,7 @@
 - [Introduction](#introduction)
 - [Materials and Method](#materials-and-method)
 - [Results and DisCcussion](#results-and-discussion)
-- [Process Simulation Integration Using Aspen HYSYS](#process-simulation-integration-using-aspen-hysys)
+- [System Setup in Simulation Process (DWSIM)](#system-setup-in-simulation-process-(dwsim))
 -  [Conclusion](#conclusion)
 - [References](#references)
 ## Acknowledgment
@@ -115,13 +115,7 @@ class was perfectly identified, with no false positives or false negatives, indi
 reliability for real-world predictive maintenance deployment.
 
 
-## 5.0 Process Simulation Integration Using Aspen HYSYS
-
-To explore the downstream implications of milling machine failures on broader engineering systems, Aspen HYSYS was integrated as a process simulation layer.  The primary goal of integrating Aspen HYSYS is to simulate the downstream chemical processing impact of potential mechanical failures identified by the machine learning model. This aims to demonstrate how predictive maintenance decisions on the milling machine can influence thermal process efficiency, energy consumption, or safety margins in a broader industrial plant.
-
-This multidisciplinary linkage provides a predictive maintenance chain that spans from mechanical tooling operations to chemical process safety, ensuring end-to-end operational reliability.
-
-### 5.1 System Setup in Simulation Process (DWSIM)
+## 5.0 System Setup in Simulation Process (DWSIM)
 ✅ 1. Process Overview
 A simplified fluid heating system was simulated using DWSIM, demonstrating how mechanical failures (such as those due to faulty machined parts like valves, pumps, or seals) affect process efficiency. The system models normal and failure scenarios in a parallel loop setup.
 
@@ -141,7 +135,7 @@ These were mapped to relevant process variables in DWSIM:
 - Torque: Overload	Pump head ↑	Energy imbalance, pressure surges
 - Combined Failures:	Multi-point deviations	System alarms, operational instability
   
-### 5.2 Example Simulation Scenario
+### 5.1 Example Simulation Scenario
 ✅ Modeled Process: Thermal Loop for Heated Fluid Transfer
 
 Main Components:
@@ -150,7 +144,7 @@ Main Components:
 - Heat Exchanger (Processes output from the normal loop)
 - Input & Output Streams (for Normal and Failure paths)
 
-### 5.3 Simulation Logic
+### 5.2 Simulation Logic
 Dynamic behavior based on ML-predicted failure types:
 
 | **ML Failure Type**        | **DWSIM Trigger**         | **System Impact**                              |
@@ -160,19 +154,19 @@ Dynamic behavior based on ML-predicted failure types:
 | Torque Overload           | Pump pressure ↑           | High power draw, possible cavitation           |
 | Combined Failures         | Multiple triggers         | Tripped flow loop, fault alarms                |
 
-### 5.4 Workflow Summary
+### 5.3 Workflow Summary
 1. ML Prediction: An ML model flags a potential mechanical failure.
 2. Simulation Setup: DWSIM variables are updated based on prediction (e.g., valve partially closed, pump runs hotter).
 3. System Behavior: Deviations in output stream pressure, temperature, or flow rate are observed.
 4. Output Reports: Efficiency loss, safety limits breached, or unstable flows are reported visually.
 
-### 5.5 Benefits of Integration
+### 5.4 Benefits of Integration
 - 🎯 Engineering Insight: Shows how small mechanical faults lead to chemical inefficiencies.
 - ⚙️ Scenario Testing: Easy simulation of “What-if” mechanical failure events.
 - 🔔 Predictive Maintenance: DWSIM simulation driven by ML alerts supports better plant decisions.
 - 🌐 Industry 4.0 Ready: Bridges machine learning with process engineering.
 
-### 5.6 To Anticipate Failure Prediction First, Then Simulation 
+### 5.5 To Anticipate Failure Prediction First, Then Simulation 
 
 🔹 Step-by-Step:
 - ML app analyzes machine sensor data (like torque, speed, tool wear) and predicts a failure type.
