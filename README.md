@@ -16,14 +16,25 @@
 This work was completed as part of a hackathon organized by the Association of Professional Women Engineers of Nigeria (APWEN) Lagos SHENoVATION. Special thanks to Olayinka Adewumi and all academic mentors and technical advisors for their valuable contributors in the course of this hackathon.
 
 ## Abstract
-This project presents a predictive maintenance solution for milling machines by applying machine learning techniques and deploying the final model using a user-friendly Streamlit web application. The dataset used includes critical machine parameters such as air temperature, process temperature, rotational speed, torque, and tool wear. The goal was to predict the type of failure the machine may encounter during operation.
-To prepare the data, preprocessing steps such as label encoding, feature scaling, and handling class imbalance with SMOTE were applied. A Random Forest Classifier was trained using the resampled data and optimized through GridSearchCV. The final model demonstrated perfect predictive performance on the test set, achieving:
+This project presents an end-to-end predictive maintenance system for milling machines, integrating machine learning with chemical process simulation to enhance industrial reliability and performance. Using a dataset comprising critical operational metrics—air temperature, process temperature, rotational speed, torque, and tool wear—a Random Forest Classifier was trained to accurately predict five distinct types of machine failure. Comprehensive data preprocessing was applied, including label encoding, feature scaling, and class imbalance correction using SMOTE. The optimized model, tuned with GridSearchCV, achieved perfect classification metrics on the test set:
 Accuracy: 1.00
+
 Precision: 1.00
+
 Recall: 1.00
+
 F1-score: 1.00
-The confusion matrix confirmed flawless classification across all five failure types. This indicates the model's exceptional ability to generalize and correctly predict equipment failure conditions, enabling preemptive intervention.
-The model was exported using joblib and integrated into a Streamlit interface, allowing end-users to input real-time machine metrics and receive instant predictions on possible failure modes. The solution empowers manufacturing teams to make data-driven maintenance decisions, significantly reducing downtime and increasing operational efficiency.
+
+The model was deployed through an intuitive Streamlit web application, enabling real-time input of machine parameters and delivering instant predictions of potential failure modes. This empowers engineers and plant operators to make informed, data-driven maintenance decisions—minimizing unplanned downtime and improving equipment longevity.
+
+To demonstrate the practical impact of predicted failures, the project incorporates a chemical process simulation using DWSIM, modeling a simplified thermal loop that mimics real-world manufacturing environments. Key components—pumps, control valves, and heat exchangers—were configured to respond to ML-predicted failures:
+
+Tool wear affects valve precision and flow stability.
+Excessive torque or heat reduces pump efficiency and introduces cavitation risk.
+Combined failure conditions simulate cascading effects through the system.
+By mapping machine learning outputs to simulation triggers in DWSIM, the system visualizes how mechanical anomalies propagate through chemical processes—creating pressure drops, temperature deviations, and system alarms. This hybrid approach bridges data science and process engineering, offering a tangible, scenario-based evaluation of predictive maintenance strategies aligned with Industry 4.0 goals.
+
+Ultimately, this integrated solution provides both prediction and visualization, making it a powerful tool for proactive fault detection, operator training, and safer plant design.
 
 ## 1.0 Introduction
 The study on the prediction of milling machine failure using machine learning focuses on developing a robust classification model capable of detecting potential failures in milling machines based on key operational parameters. This initiative is driven by the urgent need to improve machine uptime, reduce unplanned maintenance, and enhance productivity in manufacturing environments through the adoption of smart and proactive maintenance strategies.
@@ -128,10 +139,10 @@ The following failure indicators predicted by the ML model were linked to proces
 These were mapped to relevant process variables in DWSIM:
 
 #### ML Model Output	DWSIM Parameter	Simulated Impact
-- Tool Wear	Valve opening percentage ↓	Flow rate instability, pressure fluctuation
-- Heat Dissipation Issue	Pump temperature ↑	Efficiency drop, cavitation risk
-- Torque Overload	Pump head ↑	Energy imbalance, pressure surges
-- Combined Failures	Multi-point deviations	System alarms, operational instability
+- Tool Wear: Valve opening percentage ↓	Flow rate instability, pressure fluctuation
+- Heat Dissipation Issue:	Pump temperature ↑	Efficiency drop, cavitation risk
+- Torque: Overload	Pump head ↑	Energy imbalance, pressure surges
+- Combined Failures:	Multi-point deviations	System alarms, operational instability
   
 ### 5.2 Example Simulation Scenario
 ✅ Modeled Process: Thermal Loop for Heated Fluid Transfer
@@ -159,10 +170,10 @@ Dynamic behavior based on ML-predicted failure types:
 4. Output Reports: Efficiency loss, safety limits breached, or unstable flows are reported visually.
 
 ### 5.5 Benefits of Integration
-🎯 Engineering Insight: Shows how small mechanical faults lead to chemical inefficiencies.
-⚙️ Scenario Testing: Easy simulation of “What-if” mechanical failure events.
-🔔 Predictive Maintenance: DWSIM simulation driven by ML alerts supports better plant decisions.
-🌐 Industry 4.0 Ready: Bridges machine learning with process engineering.
+- 🎯 Engineering Insight: Shows how small mechanical faults lead to chemical inefficiencies.
+- ⚙️ Scenario Testing: Easy simulation of “What-if” mechanical failure events.
+- 🔔 Predictive Maintenance: DWSIM simulation driven by ML alerts supports better plant decisions.
+- 🌐 Industry 4.0 Ready: Bridges machine learning with process engineering.
 
 ### 5.6 To Anticipate Failure Prediction First, Then Simulation 
 
