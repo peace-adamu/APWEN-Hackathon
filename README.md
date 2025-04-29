@@ -33,6 +33,8 @@ By mapping machine learning outputs to simulation triggers in DWSIM, the system 
 
 Ultimately, this integrated solution provides both prediction and visualization, making it a powerful tool for proactive fault detection, operator training, and safer plant design.
 
+
+
 ## 1.0 Introduction
 The study on the prediction of milling machine failure using machine learning focuses on developing a robust classification model capable of detecting potential failures in milling machines based on key operational parameters. This initiative is driven by the urgent need to improve machine uptime, reduce unplanned maintenance, and enhance productivity in manufacturing environments through the adoption of smart and proactive maintenance strategies.
 Historically, maintenance practices evolved from reactive to preventive, but the limitations of these traditional methods — such as premature component replacements or costly downtimes — have made them inadequate for modern, complex machinery. As industries progress into the era of Industry 4.0, maintenance is no longer an afterthought but a strategic function, demanding intelligent systems that integrate data analytics, real-time monitoring, and machine learning to enable condition-based decision-making.
@@ -44,11 +46,15 @@ The model achieved perfect classification metrics, with an accuracy, precision, 
 The trained model was then deployed using Streamlit, a lightweight Python web framework, to provide a real-time interface where users can input current machine conditions and receive immediate predictions on failure types. This integration of machine learning with interactive UI tools not only enhances usability but also empowers machine operators and maintenance engineers with actionable insights for better decision-making.
 In conclusion, this study demonstrates the effectiveness of combining industrial sensor data with machine learning models for predictive maintenance. It highlights the potential of such systems to reduce downtime, extend equipment lifespan, and optimize overall operational efficiency in modern manufacturing setups.
 
+
+
 ## 2.0 Materials and Method
 ### 2.1 Data Collection
 The supervised machine learning model was developed using milling machine data. The dataset consists of 10,000 observations with five input parameters: air temperature, process temperature, rotational speed, torque, and tool wear.
 ### 2.2 Model Building
 The Random Forest Classifier model was developed using these inputs. The pipeline used included 100 estimators. The dataset was split into a 70:30 ratio for training and testing, respectively.
+
+
 
 ## 3.0 Methodology
 ### 3.1 Description of the Random Forest Model
@@ -89,6 +95,7 @@ To provide a more comprehensive evaluation, additional metrics such as precision
 These metrics are especially useful in assessing model performance across multiple classes, as they provide class-level insights into misclassification tendencies and help in understanding model robustness.
 
 
+
 ## 4.0 Results and Discussion
 ### 4.1 Tuned Random Forest Model Performance
 After hyperparameter optimization using GridSearchCV, the Random Forest model was fine-tuned with the
@@ -97,7 +104,8 @@ following parameters:
 - min_samples_leaf: 1
 - min_samples_split: 2
 - n_estimators: 100
-This configuration yielded perfect performance on the test dataset, as detailed in Table 4.2.
+This configuration yielded perfect performance on the test dataset, as detailed in Table 4.1.
+
 #### Table 4.1: Classification Report for Tuned Random Forest Model
 Class Label | Precision | Recall | F1-Score | Support
 ------------|-----------|--------|----------|--------
@@ -108,7 +116,6 @@ Class Label | Precision | Recall | F1-Score | Support
 4 | 1.00 | 1.00 | 1.00 | 387
 
 
-
 ![confusion_matrix](https://github.com/user-attachments/assets/25896115-6f1b-42f6-b83c-c14877c3f0cb)
 ![tuned_confusion_matrix](https://github.com/user-attachments/assets/4dc5caaa-db0e-4dff-aa87-e0e7c289646b)
 
@@ -116,6 +123,7 @@ Class Label | Precision | Recall | F1-Score | Support
 These results reflect an exceptional level of generalization by the model across all failure classes. Every
 class was perfectly identified, with no false positives or false negatives, indicating the model's robustness and
 reliability for real-world predictive maintenance deployment.
+
 
 
 ## 5.0 System Setup in Simulation Process (DWSIM)
@@ -190,12 +198,12 @@ You observe the chemical process behavior during the simulated failure.
 ✅ Why this is better:
 It mirrors real life — engineers use ML to anticipate failures, then simulate to test safety, plan maintenance, or redesign the system.
 
-###### Note: Keeps the simulation dynamic, based on real-time or historical predictions.
 
 #### 🔁 Option 2: Simulation First, Then ML Prediction
 Less common, but used for model training or validation.
 
-You simulate various failure conditions in DWSIM first, generate data, and then use that data to train or test your ML model. 
+Note: You can also simulate various failure conditions in DWSIM first, generate data, and then use that data to train or test your ML model. 
+
 
 
 ## 6.0 Conclusion
