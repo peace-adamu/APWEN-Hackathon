@@ -13,7 +13,7 @@
 -  [Conclusion](#conclusion)
 - [References](#references)
 ## Acknowledgment
-This work was completed as part of a hackathon organized by the Association of Professional Women Engineers of Nigeria (APWEN) Lagos SHENoVATION. Special thanks to Olayinka Adewumi and all academic mentors and technical advisors for their valuable contributors in the course of this hackathon.
+This work was completed as part of a hackathon organized by the Association of Professional Women Engineers of Nigeria (APWEN) Lagos SHEnovation. Special thanks to the sponsors, Mrs Olayinka Adewumi, all academic mentors and technical advisors for their valuable contributors in the course of this hackathon.
 
 ## Abstract
 This project presents an end-to-end predictive maintenance system for milling machines, integrating machine learning with chemical process simulation to enhance industrial reliability and performance. Using a dataset comprising critical operational metrics—air temperature, process temperature, rotational speed, torque, and tool wear—a Random Forest Classifier was trained to accurately predict five distinct types of machine failure. Comprehensive data preprocessing was applied, including label encoding, feature scaling, and class imbalance correction using SMOTE. The optimized model, tuned with GridSearchCV, achieved perfect classification metrics on the test set:
@@ -38,6 +38,7 @@ The study on the prediction of milling machine failure using machine learning fo
 Historically, maintenance practices evolved from reactive to preventive, but the limitations of these traditional methods — such as premature component replacements or costly downtimes — have made them inadequate for modern, complex machinery. As industries progress into the era of Industry 4.0, maintenance is no longer an afterthought but a strategic function, demanding intelligent systems that integrate data analytics, real-time monitoring, and machine learning to enable condition-based decision-making.
 Predictive Maintenance (PM) has emerged as a transformative approach in this context. It involves anticipating machine failures before they occur, allowing for timely intervention that minimizes unnecessary maintenance and avoids catastrophic equipment breakdowns. A key component of PM is Condition Monitoring (CM), which tracks physical indicators such as temperature, torque, rotational speed, and tool wear to assess equipment health. In milling machines specifically, this monitoring forms part of Tool Condition Monitoring (TCM) — a vital strategy that directly affects surface quality, precision, and the overall economics of machining processes.
 With advancements in the Internet of Things (IoT) and widespread deployment of industrial sensors, data acquisition is no longer a challenge. The focus has shifted to building intelligent models that can analyze this rich stream of sensor data to make accurate predictions. In this regard, Machine Learning (ML) techniques provide a powerful solution, capable of modeling complex, non-linear relationships and adapting to dynamic production conditions.
+
 This project leverages a real-world dataset of milling machine operations, composed of five critical features: air temperature, process temperature, rotational speed, torque, and tool wear. After thorough preprocessing — including feature scaling, label encoding, and balancing the data using SMOTE — a Random Forest Classifier was trained and optimized using GridSearchCV to enhance performance.
 The model achieved perfect classification metrics, with an accuracy, precision, recall, and F1-score of 1.00 across all failure categories. The outstanding performance confirms the effectiveness of Random Forest in capturing the subtle signals in the machine's operating conditions that indicate failure modes.
 The trained model was then deployed using Streamlit, a lightweight Python web framework, to provide a real-time interface where users can input current machine conditions and receive immediate predictions on failure types. This integration of machine learning with interactive UI tools not only enhances usability but also empowers machine operators and maintenance engineers with actionable insights for better decision-making.
@@ -45,7 +46,7 @@ In conclusion, this study demonstrates the effectiveness of combining industrial
 
 ## 2.0 Materials and Method
 ### 2.1 Data Collection
-The supervised machine learning model was developed using milling machine data collected at the Project Development Institute (PRODA), Enugu State. The dataset consists of 10,000 observations with five input parameters: air temperature, process temperature, rotational speed, torque, and tool wear.
+The supervised machine learning model was developed using milling machine data. The dataset consists of 10,000 observations with five input parameters: air temperature, process temperature, rotational speed, torque, and tool wear.
 ### 2.2 Model Building
 The Random Forest Classifier model was developed using these inputs. The pipeline used included 100 estimators. The dataset was split into a 70:30 ratio for training and testing, respectively.
 
@@ -105,9 +106,11 @@ Class Label | Precision | Recall | F1-Score | Support
 2 | 1.00 | 1.00 | 1.00 | 415
 3 | 1.00 | 1.00 | 1.00 | 393
 4 | 1.00 | 1.00 | 1.00 | 387
-![confusion_matrix](https://github.com/user-attachments/assets/3d7a8e4f-98c0-4689-bea0-83df144116e4)
 
-![tuned_confusion_matrix](https://github.com/user-attachments/assets/f9543cb0-ba8e-4f26-80cc-37ce66cbcc70)
+
+
+![confusion_matrix](https://github.com/user-attachments/assets/25896115-6f1b-42f6-b83c-c14877c3f0cb)
+![tuned_confusion_matrix](https://github.com/user-attachments/assets/4dc5caaa-db0e-4dff-aa87-e0e7c289646b)
 
 - Overall Accuracy: 1.00 (2000 samples)
 These results reflect an exceptional level of generalization by the model across all failure classes. Every
@@ -144,15 +147,21 @@ Main Components:
 - Heat Exchanger (Processes output from the normal loop)
 - Input & Output Streams (for Normal and Failure paths)
 
-### 5.2 Simulation Logic
-Dynamic behavior based on ML-predicted failure types:
+![image](https://github.com/user-attachments/assets/5b30f7ad-6ddd-4b7f-ae0c-d37514880ea6)
 
-| **ML Failure Type**        | **DWSIM Trigger**         | **System Impact**                              |
-|---------------------------|---------------------------|------------------------------------------------|
-| Tool Wear Failure         | Valve opening ↓           | Reduced flow, erratic pressure                 |
-| Heat Dissipation Failure  | Pump temperature ↑        | Reduced efficiency, pump instability           |
-| Torque Overload           | Pump pressure ↑           | High power draw, possible cavitation           |
-| Combined Failures         | Multiple triggers         | Tripped flow loop, fault alarms                |
+![image](https://github.com/user-attachments/assets/8423c34b-4c23-438c-a856-f1f61bd6e3ee)
+
+
+### 5.2 Simulation Logic Based on ML-Predicted Failure Types
+
+| ML Failure Type          | DWSIM Trigger                                 | System Impact                                            | Suggested Parameter Change                                             |
+|--------------------------|-----------------------------------------------|-----------------------------------------------------------|------------------------------------------------------------------------|
+| **No Failure**           | Normal component values                       | Stable system operation                                  | Valve Opening: `100%`, Pump Efficiency: `100%`, Normal Temp/Pressure  |
+| **Power Failure**        | Pump Required Power → `0` or Efficiency → `0` | Flow stops, Heat Exchanger may show NaN or error status  | Pump Required Power: `0 kW` or Efficiency: `0%`                        |
+| **Heat Dissipation Failure** | Pump or HE Temp ↑                          | Reduced heat exchange, Pump instability                  | Pump Outlet Temp: `+10–15°C`, Coolant Temp: Constant                  |
+| **Overstrain**           | Pump pressure ↑                               | High power draw, possible cavitation                     | Pump Outlet Pressure: `4–5 bar`, Power Requirement ↑                  |
+| **Tool Wear Failure**    | Valve Opening ↓ (partial or erratic)         | Reduced flow, Pressure fluctuation across the valve      | Valve Opening: `40–60%`                                               |
+
 
 ### 5.3 Workflow Summary
 1. ML Prediction: An ML model flags a potential mechanical failure.
@@ -200,7 +209,7 @@ Upon tuning, the model achieved 100% precision, recall, and F1-score across all 
 - Tool wear failure
 - Heat dissipation failure
 - Over strain failure
-- Combined failure types
+- Power failure
 
 The results affirm the model's potential for industrial application, allowing operators to preemptively identify
 specific failure types with perfect confidence, thereby minimizing machine downtime, reducing maintenance
