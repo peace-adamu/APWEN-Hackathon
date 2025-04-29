@@ -8,10 +8,10 @@ import joblib
 model = joblib.load("tuned_random_forest_model.pkl")
 
 
-st.title("🛠️ Milling Machine Failure Type Prediction App")
+st.title("🛠️ Milling Machine Failure Type Detection App")
 
 st.markdown("""
-Welcome to the **Milling Machine Failure Type Prediction App**! 👋
+Welcome to the **Milling Machine Failure Type Detection App**! 👋
 
 This app helps you predict the type of failure a milling machine might experience based on key machine condition parameters. It uses a trained machine learning model (Random Forest) built from real-world data.
 
